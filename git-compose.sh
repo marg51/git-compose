@@ -1,4 +1,5 @@
 #!/bin/bash
+pwd=$(pwd)
 while IFS='' read -r line || [[ -n "$line" ]]; do
     repo=$(echo $line | cut -d":" -f1)
     ref=$(echo $line | cut -d":" -f2)
@@ -19,4 +20,6 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         echo "running $command"
         $command
     fi
+
+    cd $pwd
 done < "$1"
